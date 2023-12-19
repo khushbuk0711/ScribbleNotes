@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "190913857004",
+    "project_id": "scribblenotes-848a3",
+    "storage_bucket": "scribblenotes-848a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190913857004:android:516a97860972722d95acc9",
+        "android_client_info": {
+          "package_name": "com.example.scribblenotes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVKCafhLwnxtswVmqg0T296hFQwvN6GEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
