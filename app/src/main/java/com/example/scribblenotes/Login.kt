@@ -14,16 +14,21 @@ class Login : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.signup.setOnClickListener {
+            val intent = Intent(this, Signup::class.java)
+            startActivity(intent)
+        }
+
+
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.login.setOnClickListener {
-            val email = binding.email.toString()
-            val pass = binding.password.toString()
+            val email = binding.email.text.toString()
+            val pass = binding.password.text.toString()
 
             if (email.isNotEmpty() && pass.isNotEmpty()) {
 
@@ -53,10 +58,5 @@ class Login : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-
-
-
-
 
 }
