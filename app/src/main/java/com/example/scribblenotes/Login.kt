@@ -22,6 +22,10 @@ class Login : AppCompatActivity() {
             val intent = Intent(this, Signup::class.java)
             startActivity(intent)
         }
+        binding.forgot.setOnClickListener {
+            val intent = Intent(this, Forgot_Password::class.java)
+            startActivity(intent)
+        }
 
 
         firebaseAuth = FirebaseAuth.getInstance()
@@ -52,7 +56,6 @@ class Login : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
         if(firebaseAuth.currentUser != null){
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
