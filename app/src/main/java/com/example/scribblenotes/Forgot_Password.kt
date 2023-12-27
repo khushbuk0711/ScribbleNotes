@@ -30,11 +30,10 @@ class Forgot_Password : AppCompatActivity() {
                 firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener {
                     if (it.isSuccessful) {
                         Toast.makeText(this, " E-mail sent successfully to reset your password", Toast.LENGTH_SHORT).show()
-                        finish()
+                        this.finish()
                     }
                     else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-
                     }
                 }
             }

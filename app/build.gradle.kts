@@ -49,6 +49,8 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:22.3.0")
     implementation("com.android.car.ui:car-ui-lib:2.5.1")
     implementation("androidx.mediarouter:mediarouter:1.6.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
     testImplementation("junit:junit:4.13.2")
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
     implementation("com.google.firebase:firebase-auth")
