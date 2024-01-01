@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".createnotes">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarcreatenote"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white">
+
+
+        <EditText
+            android:id="@+id/notestitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:hint="Enter your notes title here"
+            android:paddingTop="10dp"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="15sp"
+        android:background="@color/lightpurple"
+        android:hint="type your note"
+        android:padding="15dp"
+        android:gravity="top|left"
+        android:layout_below="@id/toolbarcreatenote"/>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/savenotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/pink"
+        android:src="@drawable/save_black_24dp" />
+
+</RelativeLayout>
