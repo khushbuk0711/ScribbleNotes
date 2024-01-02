@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.scribblenotes.databinding.ActivityLoginBinding
+import com.google.firebase.auth.ActionCodeSettings
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.actionCodeSettings
 
 class Login : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -38,8 +41,22 @@ class Login : AppCompatActivity() {
 
                 firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
+                        val verified= firebaseAuth.currentUser?.isEmailVerified
+                        if (verified==false) {
+                            firebaseAuth.currentUser?.sendEmailVerification()
+                                ?.addOnSuccessListener {
+                                    Toast.makeText(this, "Please verify your Email", Toast.LENGTH_SHORT).show()
+                                }
+                                ?.addOnFailureListener {
+                                    Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+                                }
+                        }
+                        else{
+                            Toast.makeText(this, "Email verified", Toast.LENGTH_SHORT).show()
+
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                        }
                     }
                     else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()

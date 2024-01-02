@@ -32,7 +32,9 @@ class Signup : AppCompatActivity() {
 
                 firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        val intent = Intent(this, Login::class.java)
+                        firebaseAuth.signOut()
+                        Toast.makeText(this, "Registered successfully.", Toast.LENGTH_SHORT).show()
+                        val intent= Intent(this,Login::class.java)
                         startActivity(intent)
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
@@ -43,8 +45,6 @@ class Signup : AppCompatActivity() {
                 Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
 
             }
-
-
         }
     }
 }

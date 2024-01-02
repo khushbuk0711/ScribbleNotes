@@ -5,30 +5,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".createnotes">
+    tools:context=".createnotes"
+
+    >
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarcreatenote"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/white">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:background="@color/lightpurple">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/baseline_arrow_back_24" />
 
 
         <EditText
-            android:id="@+id/notestitle"
+            android:id="@+id/notetitle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:layout_height="80dp"
             android:hint="Enter your notes title here"
             android:paddingTop="10dp"
-            />
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
+
     <EditText
+        android:id="@+id/notecontent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="15sp"
-        android:background="@color/lightpurple"
+        android:textSize="20dp"
+        android:background="@drawable/createnote"
         android:hint="type your note"
         android:padding="15dp"
         android:gravity="top|left"
@@ -41,8 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="35dp"
         android:backgroundTint="@color/pink"
         android:src="@drawable/save_black_24dp" />
 
