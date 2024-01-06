@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="lightblue">#84E6DB</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="lightblue">#8CE1D4</color>
+    <color name="yellow">#FCDD6C</color>
     <color name="pink">#74AFA3</color>
     <color name="lightpurple">#E8BDA5</color>
-    <color name="offwhite">#E2E2E6</color>
+    <color name="offwhite">#EDE2E2E6</color>
+    <color name="peach">#EDF6D1C7</color>
+    <color name="grey">#757474</color>
+    <color name="green">#227E53</color>
+    <color name="offblack">#404040</color>
+
+
+
 </resources>

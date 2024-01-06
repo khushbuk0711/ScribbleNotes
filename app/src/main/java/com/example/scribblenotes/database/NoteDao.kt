@@ -10,7 +10,7 @@ import androidx.room.Update
 import com.example.scribblenotes.model.Note
 
 @Dao
-interface Notedao {
+interface NoteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE )
     suspend fun insertNote(note: Note)
 
@@ -23,7 +23,7 @@ interface Notedao {
     @Query("SELECT * FROM NOTES ORDER BY id DESC" )
     fun getAllNotes(): LiveData<List<Note>>
 
-    @Query("SELECT * FROM NOTES WHERE notetitle LIKE :query OR  notecontent LIKE :query ")
+    @Query("SELECT * FROM NOTES WHERE noteTitle LIKE :query OR  noteDesc LIKE :query ")
     fun searchNote (query:String?):LiveData<List<Note>>
 
 }

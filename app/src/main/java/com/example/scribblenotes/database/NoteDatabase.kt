@@ -9,7 +9,7 @@ import com.example.scribblenotes.model.Note
 @Database(entities = [Note::class], version = 1)
 
 abstract class NoteDatabase: RoomDatabase() {
-    abstract fun getNoteDao(): Notedao
+    abstract fun getNoteDao(): NoteDao
     companion object{
         @Volatile
         private var instance: NoteDatabase?=  null
@@ -25,7 +25,7 @@ abstract class NoteDatabase: RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 NoteDatabase::class.java,
-                "note_database"
+                "db"
             ).build()
     }
 

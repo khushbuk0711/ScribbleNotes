@@ -7,38 +7,28 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toolbar
+import androidx.lifecycle.ViewModelProvider
+import com.example.scribblenotes.database.NoteDatabase
 import com.example.scribblenotes.databinding.ActivityMainBinding
+import com.example.scribblenotes.repository.NoteRepository
+import com.example.scribblenotes.viewmodel.NoteViewModel
+import com.example.scribblenotes.viewmodel.NoteViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var firebaseAuth: FirebaseAuth
+    lateinit var noteViewModel: NoteViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
-        binding.addnotes.setOnClickListener{
-            val intent= Intent(this,createnotes::class.java)
-            startActivity(intent)
-        }
+        setContentView(R.layout.activity_main)
 
+        setupViewModel()
     }
+    private fun setupViewModel(){
+        val noteRepository= NoteRepository(NoteDatabase(this))
+        val viewModelProviderFactory = NoteViewModelFactory(application,noteRepository)
+        noteViewModel= ViewModelProvider(this, viewModelProviderFactory)[NoteViewModel::class.java]
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        val inflater = menuInflater
-        inflater.inflate(R.menu.options, menu)
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        firebaseAuth = FirebaseAuth.getInstance()
-        val itemId = item.itemId
-        if(itemId== R.id.logout){
-            firebaseAuth.signOut()
-            val intent = Intent(this, Login::class.java)
-            startActivity(intent)
-        }
-        return super.onOptionsItemSelected(item)
+
     }
 }
