@@ -57,6 +57,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
     implementation("com.android.support:support-annotations:28.0.0")
+    implementation("com.google.firebase:firebase-firestore:24.10.0")
     testImplementation("junit:junit:4.13.2")
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
     implementation("com.google.firebase:firebase-auth")
@@ -65,15 +66,28 @@ dependencies {
     val roomVersion = "2.6.1"
     implementation ("androidx.room:room-runtime:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
+    implementation ("androidx.legacy:legacy-support-v4:1.0.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1")
+
     implementation ("androidx.room:room-ktx:$roomVersion")
 
     val navVersion = "2.7.6"
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
     implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
-    val lifecycleVersion = "2.6.2"
+    implementation ("androidx.fragment:fragment-ktx:1.4.0-alpha10")
+    val lifecycleVersion = "2.7.0"
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
     ksp("androidx.lifecycle:lifecycle-compiler:$lifecycleVersion")
+    implementation ("androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion")
+
+    implementation ("io.github.yahiaangelo.markdownedittext:markdownedittext:1.1.3")
+    implementation("io.noties.markwon:html:4.6.2")
+    implementation("io.noties.markwon:core:4.6.2")
+    implementation("io.noties.markwon:ext-strikethrough:4.6.2")
+    implementation ("io.noties.markwon:ext-tasklist:4.6.2")
 }

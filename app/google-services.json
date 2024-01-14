@@ -12,7 +12,12 @@
           "package_name": "com.example.scribblenotes"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "190913857004-r8m0qo2fob81plekvk2ci7hdljlacgjo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAVKCafhLwnxtswVmqg0T296hFQwvN6GEY"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "190913857004-r8m0qo2fob81plekvk2ci7hdljlacgjo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

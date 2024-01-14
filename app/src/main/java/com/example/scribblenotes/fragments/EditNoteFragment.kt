@@ -1,6 +1,7 @@
 package com.example.scribblenotes.fragments
 
 import android.app.AlertDialog
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,14 +22,19 @@ import com.example.scribblenotes.databinding.FragmentAddNoteBinding
 import com.example.scribblenotes.databinding.FragmentEditNoteBinding
 import com.example.scribblenotes.model.Note
 import com.example.scribblenotes.viewmodel.NoteViewModel
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
+import java.util.Date
 
 
 class EditNoteFragment : Fragment(R.layout.fragment_edit_note),MenuProvider {
     private var editNoteBinding: FragmentEditNoteBinding? =null
     private val binding get() = editNoteBinding!!
+    private  val currentDate= SimpleDateFormat.getDateInstance().format(Date())
 
     private lateinit var notesViewModel: NoteViewModel
     private lateinit var currentNote: Note
+    private var db=Firebase.firestore
 
     private val args:EditNoteFragmentArgs by navArgs()
 
@@ -48,20 +54,29 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note),MenuProvider {
         currentNote = args.note!!
 
         binding.editNoteTitle.setText(currentNote.noteTitle)
-        binding.editNoteDesc.setText(currentNote.noteDesc)
+        binding.editNoteDesc.renderMD(currentNote.noteDesc)
+        binding.editNoteDesc.setStylesBar(binding.styleBar)
 
         binding.editNoteFab.setOnClickListener {
             val noteTitle = binding.editNoteTitle.text.toString().trim()
-            val noteContent = binding.editNoteDesc.text.toString().trim()
+            val noteContent = binding.editNoteDesc.getMD()
+            val currentDate=currentDate.toString()
+            if (noteTitle !=currentNote.noteTitle || noteContent!=currentNote.noteDesc){
+                if (noteTitle.isNotEmpty() && noteContent.isNotEmpty()) {
+                    val note = Note(currentNote.id, noteTitle, noteContent,currentDate)
+                    notesViewModel.updateNote(note)
+                    db.collection("Notes").document().set(note).addOnSuccessListener{
+                        Toast.makeText(context,"Note Updated",Toast.LENGTH_SHORT).show()
+                }
+                    view.findNavController().popBackStack(R.id.homeFragment,false)
+                }
+                else{
+                    Toast.makeText(context, "Please Enter data in both the fields", Toast.LENGTH_SHORT).show()
 
-            if (noteTitle.isNotEmpty() && noteContent.isNotEmpty()) {
-                val note = Note(currentNote.id, noteTitle, noteContent)
-                notesViewModel.updateNote(note)
-                view.findNavController().popBackStack(R.id.homeFragment,false)
+                }
             }
             else{
-                Toast.makeText(context, "Please Enter data in both the fields", Toast.LENGTH_SHORT).show()
-
+                view.findNavController().popBackStack(R.id.homeFragment,false)
             }
         }
     }

@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.scribblenotes.model.Note
 
-@Database(entities = [Note::class], version = 1)
+@Database(entities = [Note::class], version = 1, exportSchema = false)
 
 abstract class NoteDatabase: RoomDatabase() {
     abstract fun getNoteDao(): NoteDao
@@ -25,7 +25,7 @@ abstract class NoteDatabase: RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 NoteDatabase::class.java,
-                "db"
+                "note_database"
             ).build()
     }
 

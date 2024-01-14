@@ -21,6 +21,7 @@ class Forgot_Password : AppCompatActivity() {
         binding.signin.setOnClickListener {
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
+            this.finish()
         }
 
 
@@ -32,6 +33,7 @@ class Forgot_Password : AppCompatActivity() {
                         Toast.makeText(this, " E-mail sent successfully to reset your password", Toast.LENGTH_SHORT).show()
                         val intent= Intent(this,Login::class.java)
                         startActivity(intent)
+                        this.finish()
                     }
                     else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()

@@ -22,6 +22,7 @@ class Signup : AppCompatActivity() {
         binding.signin.setOnClickListener {
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
+            this.finish()
         }
         binding.signup.setOnClickListener {
             val email = binding.email.text.toString()
@@ -36,6 +37,7 @@ class Signup : AppCompatActivity() {
                         Toast.makeText(this, "Registered successfully.", Toast.LENGTH_SHORT).show()
                         val intent= Intent(this,Login::class.java)
                         startActivity(intent)
+                        this.finish()
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
 

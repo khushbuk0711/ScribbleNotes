@@ -1,5 +1,6 @@
 package com.example.scribblenotes.fragments
 
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -21,6 +23,7 @@ import com.example.scribblenotes.databinding.FragmentHomeBinding
 import com.example.scribblenotes.model.Note
 import com.example.scribblenotes.viewmodel.NoteViewModel
 import com.google.firebase.auth.FirebaseAuth
+import java.util.Date
 
 
 class HomeFragment : Fragment(R.layout.fragment_home), android.widget.SearchView.OnQueryTextListener,MenuProvider {
@@ -30,8 +33,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), android.widget.SearchView
     private lateinit var notesViewModel: NoteViewModel
     private lateinit var noteAdapter: NoteAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         homeBinding= FragmentHomeBinding.inflate(inflater,container,false)
@@ -81,8 +83,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), android.widget.SearchView
     }
     private fun searchNote(query: String?){
         val searchQuery = "%$query"
-        notesViewModel.searchNote(searchQuery).observe(this){list->
-            noteAdapter.differ.submitList(list)
+        notesViewModel.searchNote(searchQuery).observe(this){
+            noteAdapter.differ.submitList(it)
         }
     }
 

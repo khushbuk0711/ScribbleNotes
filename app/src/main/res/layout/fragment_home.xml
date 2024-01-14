@@ -7,18 +7,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".HomeFragment"
-        android:background="@color/offwhite">
+        android:background="@color/white">
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addNoteFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="40dp"
-            android:backgroundTint="@color/lightblue"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="60dp"
+            android:backgroundTint="@color/blue"
             android:src="@drawable/add"
             android:clickable="true"
+            android:tintMode="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:contentDescription="image" />
@@ -36,16 +37,18 @@
         <ImageView
             android:id="@+id/emptyNotesImage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:src="@drawable/emptynote"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </layout>

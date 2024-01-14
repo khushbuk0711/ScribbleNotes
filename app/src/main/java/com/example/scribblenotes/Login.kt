@@ -56,6 +56,8 @@ class Login : AppCompatActivity() {
 
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
+                            this.finish()
+
                         }
                     }
                     else {
@@ -76,6 +78,7 @@ class Login : AppCompatActivity() {
         if(firebaseAuth.currentUser != null){
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            this.finish()
         }
     }
 
