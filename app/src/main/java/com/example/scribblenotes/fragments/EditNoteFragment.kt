@@ -18,11 +18,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.scribblenotes.MainActivity
 import com.example.scribblenotes.R
-import com.example.scribblenotes.databinding.FragmentAddNoteBinding
 import com.example.scribblenotes.databinding.FragmentEditNoteBinding
 import com.example.scribblenotes.model.Note
 import com.example.scribblenotes.viewmodel.NoteViewModel
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import java.util.Date
 
@@ -34,7 +36,7 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note),MenuProvider {
 
     private lateinit var notesViewModel: NoteViewModel
     private lateinit var currentNote: Note
-    private var db=Firebase.firestore
+    private var myRef: CollectionReference =FirebaseFirestore.getInstance().collection("Notes")
 
     private val args:EditNoteFragmentArgs by navArgs()
 
@@ -52,6 +54,7 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note),MenuProvider {
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
         notesViewModel = (activity as MainActivity).noteViewModel
         currentNote = args.note!!
+        myRef.document(currentNote.id.toString()).set(currentNote)
 
         binding.editNoteTitle.setText(currentNote.noteTitle)
         binding.editNoteDesc.renderMD(currentNote.noteDesc)
@@ -65,9 +68,8 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note),MenuProvider {
                 if (noteTitle.isNotEmpty() && noteContent.isNotEmpty()) {
                     val note = Note(currentNote.id, noteTitle, noteContent,currentDate)
                     notesViewModel.updateNote(note)
-                    db.collection("Notes").document().set(note).addOnSuccessListener{
-                        Toast.makeText(context,"Note Updated",Toast.LENGTH_SHORT).show()
-                }
+                    myRef.document(currentNote.id.toString()).set(note)
+
                     view.findNavController().popBackStack(R.id.homeFragment,false)
                 }
                 else{
@@ -86,6 +88,7 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note),MenuProvider {
             setMessage("Do you want to delete this note?")
             setPositiveButton("Delete"){ _,_ ->
                 notesViewModel.deleteNote(currentNote)
+                myRef.document(currentNote.id.toString()).delete()
                 Toast.makeText(context, "Note Deleted", Toast.LENGTH_SHORT).show()
                 view?.findNavController()?.popBackStack(R.id.homeFragment,false)
 

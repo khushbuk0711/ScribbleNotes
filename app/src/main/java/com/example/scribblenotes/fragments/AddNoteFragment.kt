@@ -16,8 +16,14 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.scribblenotes.MainActivity
 import com.example.scribblenotes.R
+import com.example.scribblenotes.adapter.NoteAdapter
 import com.example.scribblenotes.databinding.FragmentAddNoteBinding
+import com.example.scribblenotes.model.Note
 import com.example.scribblenotes.viewmodel.NoteViewModel
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.firestore
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -27,9 +33,9 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
     private var addNoteBinding: FragmentAddNoteBinding?=null
     private val binding get()=addNoteBinding!!
     private  val currentDate= SimpleDateFormat.getDateInstance().format(Date())
-    private lateinit var navController: NavController
-
-
+    private lateinit var note:Note
+    private var myRef:CollectionReference=FirebaseFirestore.getInstance().collection("Notes")
+    private var itemCount:Int=NoteAdapter().itemCount
     private lateinit var notesViewModel: NoteViewModel
     private lateinit var addNoteView: View
 
@@ -60,6 +66,7 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
         if (noteTitle.isNotEmpty() &&noteContent.isNotEmpty()){
             val note =com.example.scribblenotes.model.Note(0,noteTitle,noteContent,currentDate)
             notesViewModel.addNote(note)
+            myRef.document(itemCount.toString()).set(note)
             Toast.makeText(addNoteView.context,"Note Saved",Toast.LENGTH_SHORT).show()
             view.findNavController().popBackStack(R.id.homeFragment,false)
         }

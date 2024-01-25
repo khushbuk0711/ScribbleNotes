@@ -1,5 +1,6 @@
 package com.example.scribblenotes.fragments
 
+import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.scribblenotes.Login
 import com.example.scribblenotes.MainActivity
 import com.example.scribblenotes.R
 import com.example.scribblenotes.adapter.NoteAdapter
@@ -23,6 +25,7 @@ import com.example.scribblenotes.databinding.FragmentHomeBinding
 import com.example.scribblenotes.model.Note
 import com.example.scribblenotes.viewmodel.NoteViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Date
 
 
@@ -114,7 +117,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), android.widget.SearchView
             R.id.logout -> {
                 firebaseAuth = FirebaseAuth.getInstance()
                 firebaseAuth.signOut()
-                view?.findNavController()?.navigate(R.id.action_homeFragment_to_login2)
+                startActivity(Intent(requireActivity(),Login::class.java))
+                requireActivity().finish()
                 true
             }else -> false
         }

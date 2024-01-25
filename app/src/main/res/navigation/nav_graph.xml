@@ -16,9 +16,6 @@
         <action
             android:id="@+id/action_homeFragment_to_editNoteFragment"
             app:destination="@id/editNoteFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_login2"
-            app:destination="@id/login2" />
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"
@@ -43,9 +40,4 @@
             app:nullable="true"
             />
     </fragment>
-    <activity
-        android:id="@+id/login2"
-        android:name="com.example.scribblenotes.Login"
-        android:label="activity_login"
-        tools:layout="@layout/activity_login" />
 </navigation>
